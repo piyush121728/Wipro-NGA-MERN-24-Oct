@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 features</title>
+</head>
+<h1>ES^ features</h1>
+
+<body>
+    <script>
+
+        // 1. Spread Operator : The JavaScript spread operator (...) allows us to quickly copy all or part of an 
+        // existing array or object into another array or object.
+
+        // expanding array using spread operator
+        const arr = [1, 2, 3];
+        const updateArr = [...arr, 4, 5];
+        console.log("updatedArrEle: ", updateArr);
+
+        // expanding object using spread operator
+        const student = { fname: "piyush", lname: "kumar" };
+        const updateStudent = { ...student, rollNo: 166, class: "12th", section: 'A' };
+        console.log("updatedStudentDetails: ", updateStudent);
+
+        // update rollNo using spread operator
+        const updateStudent2 = { ...updateStudent, rollNo: 15 };
+        console.log("newUpdatedStudentDetails: ", updateStudent2); //{fname: 'piyush', lname: 'kumar', rollNo: 15, class: '12th', section: 'A'}
+        console.log("updatedStudentDetails: ", updateStudent); //{fname: 'piyush', lname: 'kumar', rollNo: 166, class: '12th', section: 'A'}
+
+        // passing Array Elements as Arguments
+        function add(a, b, c, d, e) {
+            return a + b + c + d + e;
+        }
+        console.log("result: ", add(...updateArr));
+
+        // 2. Arrow function : Its purpose is to shorten the syntax of writing function
+        const sum = (a, b, c, d, e) => a + b + c + d + e;
+        console.log("arrow function resutl: ", sum(...updateArr));
+
+        //create a arrow function to calculate the square of a number
+        const sqr = (a) => a * a;
+        console.log("sqr of " + 5 + " :", sqr(5));
+
+        //create class person with data member name and age and method greet
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`)
+            }
+        }
+
+        // 3. Class and Object
+
+        //create object of person class
+        const alice = new Person("Alice", 23);
+        alice.greet();
+        console.log(`my name is ${alice.name} and I am ${alice.age} year old.`);
+        alert(`Person Details:\nName: ${alice.name}\nAge: ${alice.age}`);
+
+        // 4. Set
+        //create set of cities and display the name
+        const cities = new Set();
+        cities.add("Lucknow");
+        cities.add("Patna");
+        cities.add("Pune");
+        cities.add("Kolkata");
+        cities.forEach(city => {
+            console.log("city: ", city);
+        })
+        console.log("cities: ", cities);
+
+        // 5. Map
+        //create a map of key value pair
+        const mp = new Map();
+        mp.set(165, "Prateek");
+        mp.set(166, "Piyush");
+        mp.forEach((key, val) => {
+            console.log("key and val: ", key, val);
+        })
+        console.log("mp: ", mp);
+
+
+    </script>
+</body>
+
+</html>

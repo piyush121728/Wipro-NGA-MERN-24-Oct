@@ -1,0 +1,189 @@
+<!-- 
+    Problem Description:
+You are required to create a small browser-based Student Management System that demonstrates the use of Modern JavaScript (ES6) features.
+The goal of this assignment is to apply key ES6 concepts — such as let, const, spread operator, arrow functions, classes, Map, and Set — in a single working example that dynamically displays student details and operations on the web page.
+Your program should display course information, student details, subjects, grades, and unique skills using these modern JS features.
+
+Functional Requirements:
+
+Use of let and const:
+Declare course name and institute name using appropriate variable types (let for changeable, const for fixed).
+Use of Spread Operator (...):
+
+Create two arrays: coreSubjects and advancedSubjects.
+Merge them into one array allSubjects using the spread operator.
+
+Use of Arrow Function:
+Create an arrow function greet(name) that returns a personalized welcome message for the student.
+
+Use of Class:
+Define a class Student with properties: name, age, and skills.
+Include a method display() that returns formatted student details.
+Create at least two student objects and display their details dynamically.
+
+Use of Map Object:
+Create a Map to store student names as keys and their grades as values.
+Display the student names and corresponding grades.
+
+Use of Set Object:
+Create a Set containing student skills.
+Display only the unique skills (no duplicates).
+
+Dynamic Output Display:
+All results must be shown dynamically on a web page (not in alert or console only).
+A single button (e.g., “Run Assignment Demo“) should trigger the complete output display
+    
+    -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Display Elements on Button Click</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        div {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .show-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="show-btn" id="showButton">Show Student Information</button>
+
+    <hr>
+
+    <div class="courseInfo hidden">Course Information:</div>
+    <div class="studentDetails hidden">Student Details:</div>
+    <div class="subjects hidden">Subjects: Math, Science, History</div>
+    <div class="grades hidden">Grades: A, B+, A-</div>
+    <div class="uniqueSkills hidden">Unique Skills: Programming, Public Speaking</div>
+
+
+    <script>
+        const button = document.getElementById('showButton');
+        const elementsToShow = document.querySelectorAll('div');
+
+        button.addEventListener('click', function () {
+            elementsToShow.forEach(element => {
+                // remove the 'hidden' class from each element.
+                element.classList.remove('hidden');
+            });
+
+            // hide the button after the information is shown
+            button.style.display = 'none';
+        });
+
+        //CourseInfo
+        const institure = "Great Learning";
+        let course = "Introduction to ES6";
+        document.querySelector('.courseInfo').innerHTML = `
+                <h1>Course Information : </h1>
+                <p><strong>Institute:</strong> ${institure}</p>
+                <p><strong>Course Title:</strong> ${course}</p>
+            `;
+
+        //Student Details
+        class Student {
+            constructor(name, age, skills) {
+                this.name = name;
+                this.age = age;
+                this.skills = skills;
+            }
+        };
+        const stu1 = new Student("Piyush", 23, "Web Dev");
+        const stu2 = new Student("Prateek", 22, "Mobile App Dev");
+
+
+        document.querySelector('.studentDetails').innerHTML = `
+                <h4>Student Enrollment Data</h4>
+                <ul>
+                    <li>
+                        <strong>Name:</strong> ${stu1.name}
+                        <br><strong>Age:</strong> ${stu1.age}
+                        <br><strong>Skill:</strong> ${stu1.skills}
+                    </li>
+                    <li>
+                        <strong>Name:</strong> ${stu2.name}
+                        <br><strong>Age:</strong> ${stu2.age}
+                        <br><strong>Skill:</strong> ${stu2.skills}
+                    </li>
+                </ul>
+        `;
+
+        //subects
+        const coreSubjects = ["English", "Maths", "Social Science", "Science"];
+        const advSubjects = ["Web Dev", "AI and ML"];
+        const allSubjects = [...coreSubjects, ...advSubjects];
+
+        const listItems = allSubjects.map(subject => `<li>${subject}</li>`).join('');
+        document.querySelector('.subjects').innerHTML = `
+                <h4>All Subjects Offered: </h4>
+                <p>This list combines ${coreSubjects.length} core subjects and ${advSubjects.length} advanced subjects.</p>
+                <ul>
+                    ${listItems}
+                </ul>
+        `;
+
+        //grade
+
+        const mp = new Map();
+        mp.set(stu1.name, "A++");
+        mp.set(stu2.name, "A");
+
+        let gradesListHTML = '';
+
+        mp.forEach((name, grade) => {
+            gradesListHTML += `<li><strong>${name}:</strong>${grade}</span></li>`;
+        });
+
+        document.querySelector('.grades').innerHTML = `
+                <h4>Final Grades: </h4>
+                <ul>
+                    ${gradesListHTML}
+                </ul>
+            `;
+
+
+        //unique skills
+        const uniqueSkills = new Set();
+        uniqueSkills.add("Programming");
+        uniqueSkills.add("Public Speaking");
+
+        let skillsListHTML = '';
+
+
+        uniqueSkills.forEach(skill => {
+            skillsListHTML += `<li>${skill}</li>`;
+        });
+
+        document.querySelector('.uniqueSkills').innerHTML = `
+                <h4>Unique Skills: </h4>
+                <ul>
+                    ${skillsListHTML}
+                </ul>
+        `;
+
+    </script>
+
+</body>
+
+</html>

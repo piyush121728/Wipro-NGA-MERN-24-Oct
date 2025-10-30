@@ -1,0 +1,42 @@
+<!-- Modules: It allows us to organize code into separate files and import/export functionalities between them -->
+<!-- In ES6, we can use the `import` and `export` keywords to achieve this. -->
+<!-- Example: -->
+<!-- // In mathUtils.js -->
+<!-- 
+    export function add(a, b) {
+        return a + b;
+    }
+    export function subtract(a, b) {
+        return a - b;
+    }
+-->
+<!-- // In main.js -->
+<!-- import { add, subtract } from './mathUtils.js'; -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Default parameter
+        function add(a, b = 2) {
+            return a + b;
+        }
+
+        console.log(add(5));
+
+
+
+        // import { add, subtract } from './maths_Utils.js'
+        // cosole.log("result come from imported aad method: ",add(5,2));
+
+    </script>
+</body>
+
+</html>
